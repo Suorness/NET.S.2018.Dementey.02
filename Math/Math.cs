@@ -24,14 +24,12 @@ namespace Math
                 throw new ArgumentException("Start bit position cannot be greater than end position.");
             }
 
-
-            int mask = ~0 << (endPosition - startPosition + 1);
+            int mask = ~0 << ((endPosition - startPosition == maxCountBit ) ? maxCountBit : (endPosition - startPosition + 1));
 
             for (int i = 0; i < startPosition; i++)
             {
                 mask = (mask << 1) + 1;
             }
-
 
             numberIn <<= startPosition;
 
