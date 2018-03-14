@@ -5,6 +5,7 @@ namespace MathNUnitTest
 {
     public class MathTest
     {
+        //TODO  class and test
         [Test]
         public void InsertNumber_8insert15from0to0_9returned()
         {
@@ -117,6 +118,15 @@ namespace MathNUnitTest
 
             Assert.Throws<ArgumentException>(() => Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition));
 
+        }
+
+        [TestCase(13, ExpectedResult = 31)]
+        [TestCase(1391, ExpectedResult = 1913)]
+        [TestCase(13932, ExpectedResult = 19233)]
+        [TestCase(149876543, ExpectedResult = 153446789)]
+        public int FindNextBiggerNumber(int number)
+        {
+            return Math.Math.FindNextBiggerNumber(number);
         }
     }
 }
