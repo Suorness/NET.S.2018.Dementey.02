@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Math
 {
@@ -24,7 +25,7 @@ namespace Math
                 throw new ArgumentException("Start bit position cannot be greater than end position.");
             }
 
-            int mask = ~0 << ((endPosition - startPosition == maxCountBit ) ? maxCountBit : (endPosition - startPosition + 1));
+            int mask = ~0 << ((endPosition - startPosition == maxCountBit) ? maxCountBit : (endPosition - startPosition + 1));
 
             for (int i = 0; i < startPosition; i++)
             {
@@ -34,6 +35,52 @@ namespace Math
             numberIn <<= startPosition;
 
             return (numberSourse & mask) | (numberIn & ~mask);
+        }
+
+        public static int FindNextBiggerNumber(int number)
+        {
+            if (number < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(number));
+            }
+
+            int result = -1;
+            var numbers = number.ToString().ToCharArray();
+
+            for (int i = numbers.Length - 1; i > 0; i--)
+            {
+                if (numbers[i] > numbers[i - 1])
+                {
+                    var swapIndex = i;
+                    for (int j = i; j < numbers.Length - 1; j++)
+                    {
+                        if ((numbers[swapIndex] >= numbers[j]) && (numbers[j] > numbers[i - 1]))
+                        {
+                            swapIndex = j;
+                        }
+                    }
+
+                    var temp = numbers[i - 1];
+                    numbers[i - 1] = numbers[swapIndex];
+                    numbers[swapIndex] = temp;
+
+                    Array.Sort(numbers, i, numbers.Length - i);
+                    result = Int32.Parse(new string(numbers));
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        public static int FindNextBiggerNumber(int number, out TimeSpan time)
+        {
+            var watcher = Stopwatch.StartNew();
+            var result = FindNextBiggerNumber(number);
+            watcher.Stop(); //TODO check this
+
+            return result;
+            
         }
     }
 }
