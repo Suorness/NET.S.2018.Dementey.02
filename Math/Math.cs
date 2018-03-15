@@ -65,7 +65,11 @@ namespace Math
                     numbers[swapIndex] = temp;
 
                     Array.Sort(numbers, i, numbers.Length - i);
-                    result = Int32.Parse(new string(numbers));
+                    var successConversion = Int32.TryParse(new string(numbers), out result);
+                    if (!successConversion)
+                    {
+                        result = -1;
+                    }
                     break;
                 }
             }
@@ -77,10 +81,13 @@ namespace Math
         {
             var watcher = Stopwatch.StartNew();
             var result = FindNextBiggerNumber(number);
-            watcher.Stop(); //TODO check this
-
+            watcher.Stop();
+            time = watcher.Elapsed;
+            
             return result;
             
         }
+
+
     }
 }

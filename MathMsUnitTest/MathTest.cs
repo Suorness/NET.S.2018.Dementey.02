@@ -93,7 +93,7 @@ namespace MathMsUnitTest
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void InsertNumber_5insert10fromNegative5to5_ArgumentOutOfRangeExceptionReturned()
+        public void InsertNumber_5insert10fromNegative5to5_ThrowsArgumentOutOfRangeException()
         {
             int numberSource = 5, numberIn = 10;
             int startPosition = -5, endPosition = 5;
@@ -105,7 +105,7 @@ namespace MathMsUnitTest
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void InsertNumber_5insert10from5toNegative5_ArgumentOutOfRangeExceptionReturned()
+        public void InsertNumber_5insert10from5toNegative5_ThrowsArgumentOutOfRangeException()
         {
             int numberSource = 5, numberIn = 10;
             int startPosition = 5, endPosition = -5;
@@ -117,7 +117,7 @@ namespace MathMsUnitTest
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
-        public void InsertNumber_5insert10from7to5_ArgumentExectionReturned()
+        public void InsertNumber_5insert10from7to5_ThrowsArgumenException()
         {
             int numberSource = 5, numberIn = 10;
             int startPosition = 7, endPosition = 5;

@@ -1,132 +1,68 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
 
 namespace MathNUnitTest
 {
-    public class MathTest
+    public class InsertNumberTest
     {
-        //TODO  class and test
-        [Test]
-        public void InsertNumber_8insert15from0to0_9returned()
+
+        [TestCase(8, 15, 0, 0, ExpectedResult = 9)]
+        [TestCase(1, 1, 0, 0, ExpectedResult = 1)]
+        [TestCase(10, 8, 3, 4, ExpectedResult = 2)]
+        [TestCase(-10, 8, 3, 4, ExpectedResult = -26)]
+        [TestCase(8, 15, 3, 8, ExpectedResult = 120)]
+        [TestCase(0, 0, 0, 0, ExpectedResult = 0)]
+        [TestCase(Int32.MaxValue, 0, 0, 31, ExpectedResult = 0)]
+        public int InsertNumberTestCase(int numberSource, int numberIn, int startPosition, int endPosition)
         {
-            int numberSource = 8, numberIn = 15;
-            int startPosition = 0, endPosition = 0;
-            int expected = 9;
-
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
-            Assert.AreEqual(resultValue, expected);
+            return Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
         }
 
-        [Test]
-        public void InsertNumber_1insert1from0to0_1returned()
+
+
+        [TestCase(5, 10, -5, 5)]
+        [TestCase(5, 10, 5, -5)]
+        [TestCase(5, 10, 5, 33)]
+        public void InsertNumber_ThrowsArgumentOutOfRangeException(int numberSource, int numberIn, int startPosition, int endPosition)
         {
-            int numberSource = 1, numberIn = 1;
-            int startPosition = 0, endPosition = 0;
-            int expected = 1;
-
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
-            Assert.AreEqual(resultValue, expected);
-        }
-
-        [Test]
-        public void InsertNumber_10insert8from3to4_2returned()
-        {
-            int numberSource = 10, numberIn = 8;
-            int startPosition = 3, endPosition = 4;
-            int expected = 2;
-
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
-            Assert.AreEqual(resultValue, expected);
-        }
-
-        [Test]
-        public void InsertNumber_negative10insert8from3to4_negative26returned()
-        {
-            int numberSource = -10, numberIn = 8;
-            int startPosition = 3, endPosition = 4;
-            int expected = -26;
-
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
-            Assert.AreEqual(resultValue, expected);
-        }
-
-        [Test]
-        public void InsertNumber_8insert15from3to8_120returned()
-        {
-            int numberSource = 8, numberIn = 15;
-            int startPosition = 3, endPosition = 8;
-            int expected = 120;
-
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
-            Assert.AreEqual(resultValue, expected);
-        }
-
-        [Test]
-        public void InsertNumber_0insert0from0to0_0returned()
-        {
-            int numberSource = 0, numberIn = 0;
-            int startPosition = 0, endPosition = 0;
-            int expected = 0;
-
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
-            Assert.AreEqual(resultValue, expected);
-        }
-
-        [Test]
-        public void InsertNumber_MaxValueinsert0from0to0_31returned()
-        {
-            int numberSource = Int32.MaxValue, numberIn = 0;
-            int startPosition = 0, endPosition = 31;
-            int expected = 0;
-
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
-            Assert.AreEqual(resultValue, expected);
-        }
-
-        [Test]
-        public void InsertNumber_5insert10fromNegative5to5_ArgumentOutOfRangeExceptionReturned()
-        {
-            int numberSource = 5, numberIn = 10;
-            int startPosition = -5, endPosition = 5;
-
             Assert.Throws<ArgumentOutOfRangeException>(() => Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition));
         }
 
-        [Test]
-        public void InsertNumber_5insert10from5toNegative5_ArgumentOutOfRangeExceptionReturned()
+
+        [TestCase(5, 10, 7, 5)]
+
+        public void InsertNumber_ThrowsArgumenException(int numberSource, int numberIn, int startPosition, int endPosition)
         {
-            int numberSource = 5, numberIn = 10;
-            int startPosition = 5, endPosition = -5;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition));
-
-
-        }
-
-        [Test]
-        public void InsertNumber_5insert10from7to5_ArgumentExectionReturned()
-        {
-            int numberSource = 5, numberIn = 10;
-            int startPosition = 7, endPosition = 5;
-
             Assert.Throws<ArgumentException>(() => Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition));
 
         }
 
+    }
+
+    public class FindNextBiggerNumberTest
+    {
         [TestCase(13, ExpectedResult = 31)]
         [TestCase(1391, ExpectedResult = 1913)]
-        [TestCase(13932, ExpectedResult = 19233)]
-        [TestCase(149876543, ExpectedResult = 153446789)]
-        public int FindNextBiggerNumber(int number)
+        [TestCase(63932, ExpectedResult = 69233)]
+        [TestCase(849876543, ExpectedResult = 853446789)]
+        [TestCase(301, ExpectedResult = 310)]
+        [TestCase(Int32.MaxValue, ExpectedResult = -1)]
+        [TestCase(1, ExpectedResult = -1)]
+        [TestCase(10, ExpectedResult = -1)]
+        [TestCase(300, ExpectedResult = -1)]
+        
+        public int FindNextBiggerNumberTestCase(int number)
         {
             return Math.Math.FindNextBiggerNumber(number);
         }
+
+
+        [TestCase(-5)]
+        [TestCase(-414)]
+        public void FindNextBiggerNumber_ThrowsArgumentOutOfRangeException(int number)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Math.Math.FindNextBiggerNumber(number));
+        }
+
     }
 }
