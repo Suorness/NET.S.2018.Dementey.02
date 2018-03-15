@@ -113,5 +113,22 @@ namespace Math
 
             return resultList;
         }
+
+        public static double FindNthRoot(double number, int power, double epsilon = 0.01)
+        {
+            if (number < 0)
+            {
+                throw new ArgumentException(nameof(number));
+            }
+
+            if (epsilon <= 0)
+            {
+                throw new ArgumentException(nameof(epsilon));
+            }
+
+            //TODO
+
+            return 1;
+        }
     }
 }

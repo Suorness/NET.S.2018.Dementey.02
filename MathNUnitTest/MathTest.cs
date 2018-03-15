@@ -104,6 +104,12 @@ namespace MathNUnitTest
 
     public class FindNthRootTest
     {
+        [TestCase(-5, 2, 0.01)]
+        [TestCase(5, 2, -0.01)]
 
+        public void FindNthRoot_ThrowsArgumentException(double number, int power, double epsilon)
+        {
+            Assert.Throws<ArgumentException>(() => Math.Math.FindNthRoot(number, power, epsilon));
+        }
     }
 }
