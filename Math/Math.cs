@@ -116,19 +116,39 @@ namespace Math
 
         public static double FindNthRoot(double number, int power, double epsilon = 0.01)
         {
-            if (number < 0)
-            {
-                throw new ArgumentException(nameof(number));
-            }
-
             if (epsilon <= 0)
             {
                 throw new ArgumentException(nameof(epsilon));
             }
 
-            //TODO
+            if (number < 0 && power % 2 == 0)
+            {
+                throw new ArgumentException(nameof(number));
+            }
 
-            return 1;
+            if (power < 0)
+            {
+                throw new ArgumentException(nameof(power));
+            }
+
+            double x;
+            double xi = number / power;
+
+            do
+            {
+                x = xi;
+                xi = GetNextIteration(number, x, power);
+            }
+            while (System.Math.Abs(xi - x) > epsilon);
+
+            return System.Math.Round(xi, epsilon.ToString().Length - 2);
+        }
+
+        private static double GetNextIteration(double number, double x, int power)
+        {
+            return (1.0 / power) *
+                ((power - 1) * x +
+                (number / System.Math.Pow(x, power - 1)));
         }
     }
 }
