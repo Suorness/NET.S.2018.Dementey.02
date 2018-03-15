@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Math
@@ -83,11 +84,34 @@ namespace Math
             var result = FindNextBiggerNumber(number);
             watcher.Stop();
             time = watcher.Elapsed;
-            
+
             return result;
-            
+
         }
 
+        public static List<int> FilterDigit(List<int> numbers, int digit)
+        {
+            if (ReferenceEquals(numbers, null))
+            {
+                throw new ArgumentNullException(nameof(numbers));
+            }
 
+            if ((digit > 9) || (digit < 0))
+            {
+                throw new ArgumentException(nameof(digit));
+            }
+
+            var resultList = new List<int>();
+
+            foreach (var number in numbers)
+            {
+                if (number.ToString().Contains(digit.ToString()))
+                {
+                    resultList.Add(number);
+                }
+            }
+
+            return resultList;
+        }
     }
 }

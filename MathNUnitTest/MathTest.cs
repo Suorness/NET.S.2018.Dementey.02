@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace MathNUnitTest
 {
@@ -50,7 +51,7 @@ namespace MathNUnitTest
         [TestCase(1, ExpectedResult = -1)]
         [TestCase(10, ExpectedResult = -1)]
         [TestCase(300, ExpectedResult = -1)]
-        
+
         public int FindNextBiggerNumberTestCase(int number)
         {
             return Math.Math.FindNextBiggerNumber(number);
@@ -63,6 +64,46 @@ namespace MathNUnitTest
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => Math.Math.FindNextBiggerNumber(number));
         }
+
+    }
+
+    public class FilterDigitTest
+    {
+        [TestCase(new int[] { 8, 16, 23, 42 }, 8, ExpectedResult = new int[] { 8 })]
+        [TestCase(new int[] { 8, 18, 28, 48 }, 8, ExpectedResult = new int[] { 8, 18, 28, 48 })]
+        [TestCase(new int[] { -18, 1, 2, 4 }, 8, ExpectedResult = new int[] { -18 })]
+        [TestCase(new int[] { -18, 18, 18, 8 }, 8, ExpectedResult = new int[] { -18, 18, 18, 8 })]
+        [TestCase(new int[] { 0, 0, 10, 300 }, 0, ExpectedResult = new int[] { 0, 0, 10, 300 })]
+        public int[] FilterDigitTestCase(int[] numbers, int digit)
+        {
+            return Math.Math.FilterDigit(new List<int>(numbers), digit).ToArray();
+        }
+
+        [TestCase(new int[] { 8, 16, 23, 42 }, 5)]
+        public void FilterDigit_EmptyListReturn(int[] numbers, int digit)
+        {
+            var result = Math.Math.FilterDigit(new List<int>(numbers), digit);
+
+            Assert.IsEmpty(result);
+        }
+
+        [TestCase(null, 5)]
+        public void FilterDigit_ThrowsArgumentNullException(List<int> numbers, int digit)
+        {
+            Assert.Throws<ArgumentNullException>(() => Math.Math.FilterDigit(numbers, digit));
+        }
+
+        [TestCase(new int[] { 8, 16, 23, 42 }, -5)]
+        [TestCase(new int[] { 8, 16, 23, 42 }, -15)]
+        [TestCase(new int[] { 8, 16, 23, 42 }, 15)]
+        public void FilterDigit_ThrowsArgumentException(int[] numbers, int digit)
+        {
+            Assert.Throws<ArgumentException>(() => Math.Math.FilterDigit(new List<int>(numbers), digit));
+        }
+    }
+
+    public class FindNthRootTest
+    {
 
     }
 }
