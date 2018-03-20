@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-
-namespace MathMsUnitTest
+﻿namespace MathAlgorithm.MSTest
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class MathTest
     {
@@ -14,7 +13,7 @@ namespace MathMsUnitTest
             int startPosition = 0, endPosition = 0;
             int expected = 9;
 
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
 
             Assert.AreEqual(resultValue, expected);
         }
@@ -26,7 +25,7 @@ namespace MathMsUnitTest
             int startPosition = 0, endPosition = 0;
             int expected = 1;
 
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
 
             Assert.AreEqual(resultValue, expected);
         }
@@ -38,7 +37,7 @@ namespace MathMsUnitTest
             int startPosition = 3, endPosition = 4;
             int expected = 2;
 
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
 
             Assert.AreEqual(resultValue, expected);
         }
@@ -50,7 +49,7 @@ namespace MathMsUnitTest
             int startPosition = 3, endPosition = 4;
             int expected = -26;
 
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
 
             Assert.AreEqual(resultValue, expected);
         }
@@ -62,7 +61,7 @@ namespace MathMsUnitTest
             int startPosition = 3, endPosition = 8;
             int expected = 120;
 
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
 
             Assert.AreEqual(resultValue, expected);
         }
@@ -74,7 +73,7 @@ namespace MathMsUnitTest
             int startPosition = 0, endPosition = 0;
             int expected = 0;
 
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
 
             Assert.AreEqual(resultValue, expected);
         }
@@ -82,50 +81,43 @@ namespace MathMsUnitTest
         [TestMethod]
         public void InsertNumber_MaxValueinsert0from0to0_31returned()
         {
-            int numberSource = Int32.MaxValue, numberIn = 0;
+            int numberSource = int.MaxValue, numberIn = 0;
             int startPosition = 0, endPosition = 31;
             int expected = 0;
 
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
 
             Assert.AreEqual(resultValue, expected);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void InsertNumber_5insert10fromNegative5to5_ThrowsArgumentOutOfRangeException()
         {
             int numberSource = 5, numberIn = 10;
             int startPosition = -5, endPosition = 5;
 
-
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void InsertNumber_5insert10from5toNegative5_ThrowsArgumentOutOfRangeException()
         {
             int numberSource = 5, numberIn = 10;
             int startPosition = 5, endPosition = -5;
 
-
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void InsertNumber_5insert10from7to5_ThrowsArgumenException()
         {
             int numberSource = 5, numberIn = 10;
             int startPosition = 7, endPosition = 5;
 
-            int resultValue = Math.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
-
+            int resultValue = MathAlgorithm.Math.InsertNumber(numberSource, numberIn, startPosition, endPosition);
         }
-
-
     }
 }

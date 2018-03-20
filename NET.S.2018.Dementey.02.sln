@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math", "Math\Math.csproj", "{8E633F8B-C26A-4684-8E4E-6A7640B3FA32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathMsUnitTest", "MathMsUnitTest\MathMsUnitTest.csproj", "{DE1362A4-1390-493B-85B9-7EA838DBA69F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.MsUnitTest", "MathMsUnitTest\Math.MsUnitTest.csproj", "{DE1362A4-1390-493B-85B9-7EA838DBA69F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathNUnitTest", "MathNUnitTest\MathNUnitTest.csproj", "{E3CE8A7E-92FE-4A41-9D5E-B4B34B313124}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.NUnitTest", "MathNUnitTest\Math.NUnitTest.csproj", "{E3CE8A7E-92FE-4A41-9D5E-B4B34B313124}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
